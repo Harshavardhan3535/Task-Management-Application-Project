@@ -1,0 +1,105 @@
+﻿<div class="dashboard-wrapper">
+
+  <div class="dashboard-container">
+
+    <header class="dashboard-header">
+      <h1 class="page-title">Dashboard</h1>
+    </header>
+
+    <!-- Stats Row -->
+    <section class="stats-grid">
+
+      <div class="stat-card">
+        <span class="label">Total Tasks</span>
+        <span class="value">{{ stats.total }}</span>
+      </div>
+
+      <div class="stat-card">
+        <span class="label">Completed</span>
+        <span class="value completed">{{ stats.completed }}</span>
+      </div>
+
+      <div class="stat-card">
+        <span class="label">Pending</span>
+        <span class="value pending">
+          {{ stats.todo + stats.inProgress }}
+        </span>
+      </div>
+
+      <div class="stat-card">
+        <span class="label">Overdue</span>
+        <span class="value overdue">{{ stats.overdue }}</span>
+      </div>
+
+    </section>
+
+    <!-- Main Content Grid -->
+    <section class="content-grid">
+
+      <!-- Upcoming -->
+      <div class="card upcoming-section">
+        <h2>Upcoming Tasks</h2>
+
+        <div *ngIf="upcomingTasks.length === 0" class="empty">
+          No upcoming tasks 🎉
+        </div>
+
+        <div class="upcoming-item" *ngFor="let task of upcomingTasks">
+          <span class="task-title">{{ task.title }}</span>
+          <span class="task-date">
+            {{ task.dueDate | date:'mediumDate' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Analytics -->
+      <div class="card analytics-section">
+        <h2>Task Distribution</h2>
+
+        <div class="bar">
+          <span class="bar-label">Completed</span>
+          <div class="bar-track">
+            <div 
+              class="bar-fill completed"
+              [style.width.%]="distribution.completed">
+            </div>
+          </div>
+          <span class="bar-value">{{ distribution.completed }}%</span>
+        </div>
+
+        <div class="bar">
+          <span class="bar-label">In Progress</span>
+          <div class="bar-track">
+            <div 
+              class="bar-fill in-progress"
+              [style.width.%]="distribution.inProgress">
+            </div>
+          </div>
+          <span class="bar-value">{{ distribution.inProgress }}%</span>
+        </div>
+
+        <div class="bar">
+          <span class="bar-label">To Do</span>
+          <div class="bar-track">
+            <div
+              class="bar-fill todo"
+              [style.width.%]="distribution.todo">
+            </div>
+          </div>
+          <span class="bar-value">{{ distribution.todo }}%</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Action Button -->
+    <div class="actions">
+      <button routerLink="/tasks" class="primary-btn">
+        Go to Tasks
+      </button>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <span class="logo">Task Manager</span>
+  </div>
+
+  <div class="navbar-right">
+
+    <!-- Dark Mode Button -->
+    <button class="dark-toggle" (click)="toggleDarkMode()">
+      🌙
+    </button>
+
+    <!-- User Menu -->
+    <div class="user-menu" (click)="toggleDropdown()">
+      <div class="avatar">{{ userInitial }}</div>
+      <span class="caret">▼</span>
+    </div>
+
+    <!-- Dropdown -->
+    <div class="dropdown" *ngIf="isDropdownOpen">
+      <button (click)="goToProfile()">Profile</button>
+      <button (click)="logout()">Logout</button>
+    </div>
+
+    <button *ngIf="authService.isAdmin()" (click)="router.navigate(['/admin'])">
+      Admin Panel
+    </button>
+
+  </div>
+</nav>

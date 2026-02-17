@@ -1,0 +1,22 @@
+<div class="profile-wrapper">
+
+  <div class="profile-container">
+
+    <h2>My Profile</h2>
+
+    <div class="profile-card">
+      <p><strong>Name:</strong> {{ user?.name }}</p>
+      <p><strong>Email:</strong> {{ user?.email }}</p>
+      <p><strong>Role:</strong> {{ user?.role }}</p>
+      <p><strong>Total Tasks:</strong> {{ taskCount }}</p>
+    </div>
+
+    <div class="profile-actions">
+      <button class="logout-btn" (click)="logout()">
+        Logout
+      </button>
+    </div>
+
+  </div>
+
+</div>

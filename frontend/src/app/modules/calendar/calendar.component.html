@@ -1,0 +1,7 @@
+<div class="calendar-card" [class.embedded]="embedded">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+
+  <div *ngIf="selectedDate && embedded" class="selected-date">
+    Tasks for {{ selectedDate }}
+  </div>
+</div>

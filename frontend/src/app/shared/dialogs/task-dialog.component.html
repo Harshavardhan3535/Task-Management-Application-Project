@@ -1,0 +1,55 @@
+<div class="task-dialog">
+  <h2 mat-dialog-title>
+    <mat-icon>{{ data.isEdit ? 'edit' : 'add' }}</mat-icon>
+    {{ data.isEdit ? 'Edit Task' : 'Create New Task' }}
+</h2>
+
+  <mat-dialog-content>
+    <form [formGroup]="taskForm" class="task-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Task Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput rows="3" formControlName="description"></textarea>
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Priority</mat-label>
+          <mat-select formControlName="priority">
+            <mat-option value="low">Low</mat-option>
+            <mat-option value="medium">Medium</mat-option>
+            <mat-option value="high">High</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="todo">To Do</mat-option>
+            <mat-option value="in-progress">In Progress</mat-option>
+            <mat-option value="completed">Completed</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Due Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dueDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions alignment="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSave()" [disabled]="taskForm.invalid">
+      {{ data.isEdit ? 'Update Task' : 'Create Task' }}
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,147 @@
+<div class="tasks-wrapper">
+
+  <!-- DATE FILTER INFO -->
+  <div *ngIf="selectedDate" class="filter-info">
+    <span>
+      Showing tasks for {{ selectedDate | date:'mediumDate' }}
+    </span>
+    <button class="clear-btn" (click)="taskService.filterByDate(null)">
+      Clear
+    </button>
+  </div>
+
+  <!-- SEARCH + SORT -->
+  <div class="task-toolbar">
+    <input
+      type="text"
+      placeholder="Search tasks..."
+      [(ngModel)]="searchTerm"
+      (input)="ngOnInit()"
+      class="search-input"
+    />
+
+    <select
+      [(ngModel)]="sortBy"
+      (change)="ngOnInit()"
+      class="sort-select">
+      <option value="createdAt">Newest</option>
+      <option value="dueDate">Due Date</option>
+      <option value="priority">Priority</option>
+    </select>
+  </div>
+
+  <div class="kanban-board">
+
+    <!-- LEFT COLUMN -->
+    <div class="column new-task-column">
+      <div class="task-card add-task" (click)="openCreateDialog()">
+        + New Task
+      </div>
+
+      <div class="calendar-card">
+        <app-calendar [embedded]="true"></app-calendar>
+      </div>
+    </div>
+
+    <!-- TO DO -->
+    <div class="column">
+      <h3>To Do</h3>
+      <div cdkDropList [cdkDropListData]="todoTasks"
+        (cdkDropListDropped)="drop($event, 'todo')">
+
+        <div class="task-card"
+          [class.overdue]="taskService.isOverdue(task)"
+          *ngFor="let task of todoTasks"
+          cdkDrag>
+
+          <div class="task-header">
+            <span>{{ task.title }}</span>
+            <span class="priority-badge" [ngClass]="task.priority">
+              {{ task.priority | titlecase }}
+            </span>
+          </div>
+
+          <div class="actions">
+            <button class="link-btn" (click)="openEditDialog(task)">Edit</button>
+            <button class="link-btn danger"
+              (click)="$event.stopPropagation(); deleteTask(task._id)">
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="todoTasks.length === 0" class="empty-state">
+          No tasks here.
+        </div>
+      </div>
+    </div>
+
+    <!-- IN PROGRESS -->
+    <div class="column">
+      <h3>In Progress</h3>
+      <div cdkDropList [cdkDropListData]="inProgressTasks"
+        (cdkDropListDropped)="drop($event, 'in-progress')">
+
+        <div class="task-card"
+          [class.overdue]="taskService.isOverdue(task)"
+          *ngFor="let task of inProgressTasks"
+          cdkDrag>
+
+          <div class="task-header">
+            <span>{{ task.title }}</span>
+            <span class="priority-badge" [ngClass]="task.priority">
+              {{ task.priority | titlecase }}
+            </span>
+          </div>
+
+          <div class="actions">
+            <button class="link-btn" (click)="openEditDialog(task)">Edit</button>
+            <button class="link-btn danger"
+              (click)="$event.stopPropagation(); deleteTask(task._id)">
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="inProgressTasks.length === 0" class="empty-state">
+          No tasks here.
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLETED -->
+    <div class="column">
+      <h3>Completed</h3>
+      <div cdkDropList [cdkDropListData]="completedTasks"
+        (cdkDropListDropped)="drop($event, 'completed')">
+
+        <div class="task-card"
+          [class.overdue]="taskService.isOverdue(task)"
+          *ngFor="let task of completedTasks"
+          cdkDrag>
+
+          <div class="task-header">
+            <span>{{ task.title }}</span>
+            <span class="priority-badge" [ngClass]="task.priority">
+              {{ task.priority | titlecase }}
+            </span>
+          </div>
+
+          <div class="actions">
+            <button class="link-btn" (click)="openEditDialog(task)">Edit</button>
+            <button class="link-btn danger"
+              (click)="$event.stopPropagation(); deleteTask(task._id)">
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="completedTasks.length === 0" class="empty-state">
+          No tasks here.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

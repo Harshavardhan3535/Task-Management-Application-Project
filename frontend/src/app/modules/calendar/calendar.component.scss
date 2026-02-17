@@ -1,0 +1,94 @@
+.calendar-card {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.calendar-card.embedded {
+  padding: 8px;
+}
+
+/* FullCalendar polish */
+.fc {
+  font-size: 13px;
+}
+
+.fc-toolbar-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.fc-button {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* Overdue highlight */
+::ng-deep .overdue-event {
+  background: #fee2e2 !important;
+  border-color: #ef4444 !important;
+  color: #991b1b !important;
+}
+
+/* Selected date label */
+.selected-date {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Embedded calendar header layout */
+:host-context(.embedded) .fc-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+:host-context(.embedded) .fc-toolbar-chunk {
+  display: flex;
+  justify-content: center;
+}
+
+/* Embedded calendar fixes */
+.fc.fc-media-screen {
+  max-width: 100%;
+}
+
+.calendar-embedded .fc-toolbar {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calendar-embedded .fc-toolbar-chunk {
+  justify-content: center;
+}
+
+/* Compact buttons */
+.fc .fc-button {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Priority colors for calendar events */
+
+::ng-deep .fc .low {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+::ng-deep .fc .medium {
+  background-color: #f59e0b !important;
+  border-color: #f59e0b !important;
+}
+
+::ng-deep .fc .high {
+  background-color: #ef4444 !important;
+  border-color: #ef4444 !important;
+}

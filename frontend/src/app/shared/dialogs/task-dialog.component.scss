@@ -1,0 +1,47 @@
+:host {
+  display: block;
+}
+
+::ng-deep .mat-mdc-dialog-container {
+  padding: 24px !important;
+}
+
+.task-dialog {
+  width: 100%;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+mat-dialog-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
