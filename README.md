@@ -13,3 +13,5 @@ Angular | Node.js | Express.js | MongoDB | JWT | TypeScript
 ## Setup
 cd backend && npm install && npm start
 cd frontend && npm install && ng serve
+
+--
